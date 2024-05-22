@@ -1,22 +1,24 @@
+    // Luodaan muuttujat joihin tallentuu valinta- ja hakukenttäelementti
     const theaterSelect = document.getElementById('theater-select');
     const searchInput = document.getElementById('search-input');
 
-    // Fetch theaters and populate dropdown
+    // Noudetaan teatterit ja täytetään alasvetovalikko
     fetchTheaters();
 
-    // Event listener for theater selection change
+    // Lisätään tapahtumakuuntelija teatterin valinnan muutokselle
     theaterSelect.addEventListener('change', function() {
         const selectedTheaterId = this.value;
         fetchMovies(selectedTheaterId);
     });
 
-    // Event listener for search input change
+    // Lisätään tapahtumakuuntelija hakukentän muutokselle
     searchInput.addEventListener('input', function() {
         const searchString = this.value.trim();
         const selectedTheaterId = theaterSelect.value;
         fetchMovies(selectedTheaterId, searchString);
     });
 
+    // Funktio teatterien noutamiseksi
 function fetchTheaters() {
     const theatersUrl = 'https://www.finnkino.fi/xml/TheatreAreas/';
     fetch(theatersUrl)
@@ -34,13 +36,12 @@ function fetchTheaters() {
                 theaterSelect.appendChild(option);
             });
 
-            // Trigger movie fetch for the initially selected theater
             const selectedTheaterId = theaterSelect.value;
             fetchMovies(selectedTheaterId);
         })
         .catch(error => console.error('Error fetching theaters:', error));
 }
-
+    // Funktio elokuvien noutamiseksi
 function fetchMovies(theaterId, searchString = '') {
     const moviesUrl = `https://www.finnkino.fi/xml/Schedule/?area=${theaterId}`;
     fetch(moviesUrl)
@@ -59,7 +60,6 @@ function fetchMovies(theaterId, searchString = '') {
                 const imageUrl = movie.querySelector('EventSmallImagePortrait').textContent;
                 const description = movie.querySelector('PresentationMethodAndLanguage').textContent;
 
-                // Filter movies by search string
                 if (!title.toLowerCase().includes(searchString.toLowerCase())) {
                     return;
                 }
@@ -78,7 +78,7 @@ function fetchMovies(theaterId, searchString = '') {
         })
         .catch(error => console.error('Error fetching movies:', error));
 }
-
+    // Funktio jossa aika ja päivämäärä muotoillaan luettavaan muotoon
 function formatDateTime(dateTimeString) {
     const date = new Date(dateTimeString);
     const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
