@@ -1,0 +1,1 @@
+Kurssin toinen sovellustehtävä: "AJAX-sovellus REST APIa hyödyntäen". Valitsin aiheeksi Elokuvanäytös sovelluksen.

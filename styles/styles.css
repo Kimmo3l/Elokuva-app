@@ -1,0 +1,57 @@
+body {
+    background-color: #333333;
+    color: white;
+    font-family:Arial, Helvetica, sans-serif
+}
+
+header {
+    background-color: #222;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 20px;
+}
+
+header label, header select, header input {
+    background-color: #dddddd;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding: 5px 10px;
+}
+
+header select {
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.movie-item {
+    background-color: #444;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+}
+
+.movie-item img {
+    display: block;
+    margin: 0 auto 10px;
+    max-width: 100%;
+}
+
+.movie-item h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.movie-item p {
+    margin: 10px 0;
+}
